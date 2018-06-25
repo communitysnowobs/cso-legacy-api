@@ -18,7 +18,7 @@ class MountainHub():
 
     def __init__(self):
         self.key = "MountainHub"
-        self.state = { 'min_timestamp': 1517458000000, 'max_timestamp': 1517458000000 }
+        self.state = { 'min_timestamp': 1427458000000, 'max_timestamp': 1427458000000 }
 
     def get_new_data(self):
         print("Getting new data!")
