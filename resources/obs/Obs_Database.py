@@ -92,13 +92,13 @@ class Obs_Database():
             schedule.run_pending()
             time.sleep(60)
 
-    #@cache(ttl=60, max_size = 128)
+    @cache(ttl=60, max_size = 128)
     def query(self, start, end, limit, page, region):
 
         # Restrict by time
         df = self.df[(self.df.timestamp > start) & (self.df.timestamp < end)]
 
-        # Restrict by polygon region
+        # Restrict by region
         if region:
             try:
                 polygon = gpd.GeoSeries(decoded_polygon(region))
@@ -109,5 +109,6 @@ class Obs_Database():
 
         # Limit number of results
         df = df[((page - 1) * limit):page * limit]
+        
         res_str = df.to_json(orient='records')
         return data_message(json.loads(res_str))
