@@ -1,5 +1,4 @@
 import sys
-sys.path.append('../../')
 import time
 
 import pandas as pd

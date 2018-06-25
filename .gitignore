@@ -5,6 +5,6 @@
 !.elasticbeanstalk/*.global.yml
 
 .env
-.backup
+.store
 __pycache__
 data
