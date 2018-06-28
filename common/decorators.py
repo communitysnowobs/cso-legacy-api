@@ -79,15 +79,12 @@ def cache(ttl=60, max_size=128):
             if key in cache:
                 cached_at, val = cache.get(key)
                 if time.time() - cached_at > ttl:
-                    print('expired: ', args, kwargs)
                     new_val = func(*args, **kwargs)
                     update(key, new_val)
                     return new_val
                 else:
-                    print('cached: ', args, kwargs)
                     return val
             else:
-                print('not cached: ', args, kwargs)
                 val = func(*args, **kwargs)
                 insert(key, val)
                 return val

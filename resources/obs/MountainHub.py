@@ -21,21 +21,17 @@ class MountainHub():
         self.state = { 'min_timestamp': 1427458000000, 'max_timestamp': 1427458000000 }
 
     def get_new_data(self):
-        print("Getting new data!")
         if ('max_timestamp' in self.state):
             ts = self.state['max_timestamp']
             for block in self.__get_data(ts):
                 yield block
             self.state['max_timestamp'] = int(time.time() * 1000)
-        print("Finished getting new data!")
 
     def get_all_data(self):
-        print("Getting all data!")
         if ('min_timestamp' in self.state):
             ts = self.state['min_timestamp']
             for block in self.__get_data(ts):
                 yield block
-        print("Finished getting all data!")
 
     def __get_data(self, timestamp):
         while timestamp < int(time.time() * 1000):

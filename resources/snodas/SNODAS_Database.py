@@ -32,7 +32,6 @@ class SNODAS_Database():
         self.nc_path_2 = os.path.join(self.store_dir, "db_2.nc")
 
         self.state = self.load()
-        print(self.state)
         if 'last_updated' in self.state and self.state['last_updated'] is not None:
             self.ds = xr.open_dataset(self.state['last_updated'])
         else:
@@ -65,10 +64,8 @@ class SNODAS_Database():
     def get_next_data(self):
         self.make_consistent()
         if 'max_date_1' not in self.state or self.state['max_date_1'] is None:
-            print('CREATE')
             self.create_db(self.state['min_date'])
         else:
-            print('APPEND')
             self.append_db(self.state['max_date_1'] + timedelta(days=1))
         self.save()
 
@@ -114,7 +111,6 @@ class SNODAS_Database():
 
         ncrcat_str_1 = ncrcat_format % (path, os.path.join(self.store_dir, "db_1.nc"))
         ncrcat_str_2 = ncrcat_format % (path, os.path.join(self.store_dir, "db_2.nc"))
-        print('STOP HERE FIRST')
         self.ds_lock.acquire()
         self.ds = xr.open_dataset(self.nc_path_2)
         self.ds_lock.release()
@@ -127,7 +123,6 @@ class SNODAS_Database():
         self.ds_lock.acquire()
         self.ds = xr.open_dataset(self.nc_path_1)
         self.ds_lock.release()
-        print('STOP HERE')
         subprocess.call(ncrcat_str_2, shell=True)
 
         self.state['max_date_2'] = date
@@ -143,7 +138,6 @@ class SNODAS_Database():
         nc_2_size = os.path.getsize(self.nc_path_2)
         # If files are of same size, set max_date to match
         if nc_1_size == nc_2_size:
-            print('SAME SIZE')
             max_date = max(self.state['max_date_1'], self.state['max_date_2'])
             self.state['max_date_1'] = max_date
             self.state['max_date_2'] = max_date
@@ -155,7 +149,6 @@ class SNODAS_Database():
             self.state['max_date_2'] = max_date
         # Copy smaller file to bigger file if inconsistent, set date accordingly
         self.save()
-        print('Consistent', nc_1_size, nc_2_size)
 
     @cache(ttl=10, max_size = 128)
     def query(self, lat, long):
