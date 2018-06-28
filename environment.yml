@@ -1,4 +1,4 @@
-name: cso_test_env
+name: cso_env
 dependencies:
   - python=3.6
   - aniso8601=3.0.2
