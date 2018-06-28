@@ -4,7 +4,7 @@ import math
 
 from flask_restful import fields, marshal, reqparse, Resource, inputs
 from datetime import datetime
-from common.utils import unsafe, cache, most_recent_hour
+from common.utils import most_recent_hour
 from common.elevation import with_elevation
 
 parser = reqparse.RequestParser(bundle_errors=True)

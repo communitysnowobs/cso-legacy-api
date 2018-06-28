@@ -11,8 +11,8 @@ import polyline
 
 from shapely.geometry import Point, Polygon, shape
 from resources.obs.MountainHub import MountainHub
-from resources.obs.SnowPilot import SnowPilot
-from common.utils import cache, empty_cso_dataframe, decoded_polygon, error_message, data_message, threaded
+from common.utils import empty_cso_dataframe, decoded_polygon, error_message, data_message
+from common.decorators import cache, threaded, locked
 
 class Obs_Database():
 

@@ -111,3 +111,11 @@ def snodas_ds(date, code=1036):
     gz_format = snodas_file_format(date)
     tar = ut.url_to_tar(url)
     return tar_to_snodas(tar, gz_format, code=code)
+
+def save_snodas(date, path):
+    path = os.path.join(path, date.strftime('SNODAS_%Y%m%d.nc'))
+    if not os.path.exists(path):
+        ds = snodas_ds(date)
+        ut.save_netcdf(ds, path)
+
+    return path

@@ -3,7 +3,7 @@ import os
 
 import requests
 
-from common.utils import batch
+from common.decorators import batch
 
 BASE_ELEVATION_URL = 'https://maps.googleapis.com/maps/api/elevation/json'
 

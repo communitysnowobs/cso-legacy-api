@@ -6,8 +6,9 @@ import geopandas as gpd
 import requests
 
 from flask_restful import fields, marshal, reqparse, Resource, inputs
-from common.utils import unsafe, cache, empty_cso_dataframe
+from common.utils import empty_cso_dataframe
 from common.elevation import with_elevation
+from common.decorators import unsafe, cache
 
 BASE_URL = 'https://api.mountainhub.com/timeline'
 HEADER = { 'Accept-version': '1' }
