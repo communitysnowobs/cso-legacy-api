@@ -1,5 +1,27 @@
 # Community Snow Observations API
 
+## Installation
+
+1. Create virtualenv with necessary packages
+```
+conda create env --file environment.yml
+```
+
+2. Activate virtualenv
+```
+conda activate cso_env
+```
+
+3. Run application
+```
+python application.py
+```
+
+## Documentation
+
+API Docs available at [https://communitysnowobs.docs.apiary.io/#].
+Basic information about endpoints can also be found below.
+
 ## Endpoints
 
 ### /obs
