@@ -1,0 +1,59 @@
+FORMAT: 1A
+HOST: localhost:5000
+
+# Community Snow Observations
+
+API for retrieving community-generated snow depth observations
+
+## Observations Data [/obs{?limit}{?page}{?start}{?end}{?region}]
+
+### Get Observations [GET]
+
+Retrieve Community Snow Observations filtered using a variety of parameters to select time range and location.
+
++ Parameters
+    + limit: `1000` (integer, optional)  Maximum number of records to return.
+        + Default: `1000`
+    + page: `1` (integer, optional) - Page number of results.
+        + Default: `1`
+    + start: `1427458000000` (integer, optional) - Earliest unix timestamp (in milliseconds) of results.
+        + Default: `1427458000000`
+    + end: `1427458000000` (integer, optional) - Earliest unix timestamp (in milliseconds) of results.
+        + Default: `Present Time`
+    + region: `45,-120|50,-120|50,-110|,45,-110` (string, optional) - Region to return results from.
+        Can be specified as a series of coordinates separated by `|`, e.g. `<lat_1>,<long_1>|<lat_2>,<long_2>|<lat_3>,<long_3>` or as an [encoded polyline](https://developers.google.com/maps/documentation/utilities/polylinealgorithm).
+        + Default: `None`
++ Response 200 (application/json)
+
+        [
+            {
+                "author_name": "Jessica Smith",
+                "id": "2015-08-05T08:40:51.620Z",
+                "timestamp": 1500000000000,
+                "lat": 48.5412,
+                "long": 21.7530,
+                "type": "snow_observations",
+                "snow_depth": 349.999,
+                "elevation": 502.472
+                
+            }
+        ]
+        
+## SNODAS Data [/snodas{?lat}{?long}]
+
+### Get SNODAS Data [GET]
+
+Retrieve SNODAS data at a particular location as a timeseries. Each entry contains snow depth and timestamp. Note that data from this endpoint is an estimate of snow depth, and is approximately 1km in resolution.
+
++ Parameters
+    + lat:  `45.254` (float, required) - Latitude of results.
+    + long: `-121.680`(float, required) - Longitude of results.
+
++ Response 200 (application/json)
+
+        [
+            {
+                "snow_depth": 349.999,
+                "timestamp": 1500000000000,
+            }
+        ]
