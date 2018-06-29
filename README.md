@@ -9,7 +9,7 @@ conda create env --file environment.yml
 
 2. Activate virtualenv
 ```
-conda activate cso_env
+conda activate cso_api
 ```
 
 3. Run application

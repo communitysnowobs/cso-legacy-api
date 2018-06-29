@@ -5,8 +5,8 @@ from resources.obs.Obs import Obs
 from resources.obs.Obs_Database import Obs_Database
 from resources.snodas.SNODAS_Database import SNODAS_Database
 
-from dotenv import load_dotenv
-load_dotenv()
+from dotenv import load_dotenv, find_dotenv
+load_dotenv(find_dotenv())
 
 application = Flask(__name__)
 application.config['RESTFUL_JSON'] = {'indent': 4}

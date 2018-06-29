@@ -20,8 +20,8 @@ def empty_cso_dataframe():
         'timestamp',
         'lat',
         'long',
-        'type',
         'snow_depth',
+        'source',
         'elevation'
     ])
 

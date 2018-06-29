@@ -11,6 +11,7 @@ import polyline
 
 from shapely.geometry import Point, Polygon, shape
 from resources.obs.MountainHub import MountainHub
+from resources.obs.SnowPilot import SnowPilot
 from common.utils import empty_cso_dataframe, decoded_polygon, error_message, data_message
 from common.decorators import cache, threaded, locked
 
@@ -27,7 +28,7 @@ class Obs_Database():
         self.df, self.state = self.load()
         self.df_lock = Lock()
 
-        self.sources = [MountainHub()]
+        self.sources = [MountainHub(), SnowPilot()]
         # Load state into sources
         for source in self.sources:
             if source.key in self.state['sources']:
@@ -80,13 +81,13 @@ class Obs_Database():
         for source in self.sources:
             for block in source.get_new_data():
                 self.update_df(block)
-        self.save()
+            self.save()
 
     def get_all_data(self):
         for source in self.sources:
             for block in source.get_all_data():
                 self.update_df(block)
-        self.save()
+                self.save()
 
     @threaded
     def run_worker(self):
@@ -97,16 +98,18 @@ class Obs_Database():
             time.sleep(60)
 
     @cache(ttl=60, max_size = 128)
-    def query(self, start, end, limit, page, region):
+    def query(self, start, end, limit, page, region, source):
         # Restrict by time
         self.df_lock.acquire()
         df = self.df[(self.df.timestamp > start) & (self.df.timestamp < end)]
         self.df_lock.release()
+        if source:
+            df = df[df.source == source]
         # Restrict by region
         if region:
             try:
-                polygon = gpd.GeoSeries(decoded_polygon(region))
-                locations = gpd.GeoSeries([Point(coord) for coord in zip(df['long'], df['lat'])])
+                polygon = gpd.GeoSeries(decoded_polygon(region), crs={'init': 'epsg:4326'})
+                locations = gpd.GeoSeries([Point(coord) for coord in zip(df['long'], df['lat'])], crs={'init': 'epsg:4326'})
                 df = df[locations.intersects(polygon.ix[0])]
             except:
                 return error_message('Invalid Region \'%s\'' % region)

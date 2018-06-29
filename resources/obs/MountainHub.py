@@ -18,7 +18,7 @@ class MountainHub():
 
     def __init__(self):
         self.key = "MountainHub"
-        self.state = { 'min_timestamp': 1427458000000, 'max_timestamp': 1427458000000 }
+        self.state = { 'min_timestamp': 1476705600000, 'max_timestamp': 1476705600000 }
 
     def get_new_data(self):
         if ('max_timestamp' in self.state):
@@ -48,8 +48,8 @@ class MountainHub():
             'timestamp' : fields.Integer(attribute=lambda x: x['observation']['reported_at']),
             'lat' : fields.Float(attribute=lambda x: x['observation']['location'][1]),
             'long' : fields.Float(attribute=lambda x: x['observation']['location'][0]),
-            'type' : fields.String(attribute=lambda x: x['observation']['type']),
-            'snow_depth' : fields.Float(attribute=lambda x: x['observation']['details'][0]['snowpack_depth'])
+            'snow_depth' : fields.Float(attribute=lambda x: x['observation']['details'][0]['snowpack_depth']),
+            'source' : fields.String(default = 'MountainHub')
         }
 
         return marshal(record, cso_format)
