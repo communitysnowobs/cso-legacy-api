@@ -17,6 +17,18 @@ conda activate cso_api
 python application.py
 ```
 
+## Updating Requirements
+
+1. Install package using conda or pip
+```
+conda install <package>
+pip install <package>
+```
+2. Update environment.yml
+```
+conda env export --no-build --file environment.yml
+```
+
 ## Documentation
 
 API Docs available at [https://communitysnowobs.docs.apiary.io/#].
