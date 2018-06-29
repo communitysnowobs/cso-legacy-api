@@ -12,7 +12,15 @@ conda env create --file environment.yml
 conda activate cso_api
 ```
 
-3. Run application
+3. Setup .env file
+```
+GOOGLE_API_KEY=<GOOGLE_API_KEY>
+SNOWPILOT_USERNAME=<SNOWPILOT_USERNAME>
+SNOWPILOT_PASSWORD=<SNOWPILOT_PASSWORD>
+
+```
+
+4. Run application
 ```
 python application.py
 ```
