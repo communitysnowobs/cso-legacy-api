@@ -23,6 +23,8 @@ Retrieve Community Snow Observations filtered using a variety of parameters to s
     + region: `45,-120|50,-120|50,-110|45,-110` (string, optional) - Region to return results from.
         Can be specified as a series of coordinates separated by `|`, e.g. `<lat_1>,<long_1>|<lat_2>,<long_2>|<lat_3>,<long_3>` or as an [encoded polyline](https://developers.google.com/maps/documentation/utilities/polylinealgorithm).
         + Default: `None`
+    + source: `MountainHub` (string, optional) - Source to select results from.
+        + Default: `None`
 + Response 200 (application/json)
 
         [
@@ -32,8 +34,8 @@ Retrieve Community Snow Observations filtered using a variety of parameters to s
                 "timestamp": 1500000000000,
                 "lat": 48.5412,
                 "long": 21.7530,
-                "type": "snow_observations",
                 "snow_depth": 349.999,
+                "source": "MountainHub",
                 "elevation": 502.472
 
             }
