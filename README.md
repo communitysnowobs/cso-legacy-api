@@ -4,7 +4,7 @@
 
 1. Create virtualenv with necessary packages
 ```
-conda create env --file environment.yml
+conda env create --file environment.yml
 ```
 
 2. Activate virtualenv
