@@ -13,11 +13,10 @@ application.config['RESTFUL_JSON'] = {'indent': 4}
 api = Api(application)
 
 obs_db = Obs_Database()
-snodas_db = SNODAS_Database()
-
+#snodas_db = SNODAS_Database()
 
 api.add_resource(Obs, '/obs', resource_class_args = [obs_db])
-api.add_resource(SNODAS, '/snodas', resource_class_args = [snodas_db])
+#api.add_resource(SNODAS, '/snodas', resource_class_args = [snodas_db])
 
 if __name__ == '__main__':
     application.run(debug=False)
