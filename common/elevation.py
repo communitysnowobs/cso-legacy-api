@@ -14,7 +14,6 @@ def with_elevation(data: List[Dict]) -> List[Dict]:
         'key': os.getenv('GOOGLE_API_KEY')
     }
     res = requests.get(BASE_ELEVATION_URL, params=params).json()
-
     if 'results' not in res:
         raise ValueError(res)
 

@@ -37,8 +37,6 @@ class SnowPilot():
             'form_id' : 'user_login',
             'op' : 'Log in'
         }
-        print(os.getenv('GOOGLE_API_KEY'))
-        print(post_data)
         r = requests.post(LOGIN_URL, data = post_data, headers=LOGIN_HEADERS)
         return r.history[0].cookies
 
@@ -81,7 +79,6 @@ class SnowPilot():
         return marshal(dict, cso_format)
 
     def __fetch_raw_data(self, min_timestamp, max_timestamp):
-
         date_min = timestamp_to_date(min_timestamp).strftime('%Y-%m-%d')
         date_max = timestamp_to_date(max_timestamp).strftime('%Y-%m-%d')
 
@@ -108,7 +105,6 @@ class SnowPilot():
                     return df
             except Exception as e:
                 print(e)
-                #print(response.text)
 
         return empty_cso_dataframe()
 
