@@ -1,0 +1,9 @@
+version: 2
+jobs:
+  build:
+    docker: # See https://docs.docker.com/get-started/#docker-concepts if you are new to Docker.
+      - image: continuumio/miniconda3
+    steps:
+      - checkout
+      - run: conda env update -n base --file environment.yml
+      - run: echo "A first hello"

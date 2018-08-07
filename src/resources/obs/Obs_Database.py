@@ -17,7 +17,7 @@ from common.decorators import cache, threaded, locked
 
 class Obs_Database():
 
-    def __init__(self, store_dir = ".store/obs"):
+    def __init__(self, store_dir = "store/obs"):
 
         if not os.path.exists(store_dir):
             os.makedirs(store_dir)

@@ -4,8 +4,9 @@
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 
-.env
-store
 __pycache__
-data
 .DS_Store
+*.md
+*.apib
+.git/*
+*.ignore
