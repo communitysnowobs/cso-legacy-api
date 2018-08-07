@@ -5,5 +5,5 @@ jobs:
       - image: continuumio/miniconda3
     steps:
       - checkout
-      - run: conda env update -n base --file environment.yml
+      - run: conda env update -q -n base --file environment.yml
       - run: echo "A first hello"
