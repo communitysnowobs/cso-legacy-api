@@ -1,5 +1,7 @@
 # Community Snow Observations API
 
+**Community Snow Observations has switched to a new API, built on top of AWS Lambda. Code can be found [here](https://github.com/communitysnowobs/cso-lambda)**
+
 ## Installation
 
 1. Create virtualenv with necessary packages
